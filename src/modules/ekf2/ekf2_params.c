@@ -516,19 +516,6 @@ PARAM_DEFINE_INT32(EKF2_MAG_TYPE, 0);
 PARAM_DEFINE_FLOAT(EKF2_MAG_ACCLIM, 0.5f);
 
 /**
- * Yaw rate threshold used by automatic selection of magnetometer fusion method.
- *
- * This parameter is used when the magnetometer fusion method is set automatically (EKF2_MAG_TYPE = 0). If the filtered yaw rate is greater than this parameter value, then the EKF will use 3-axis magnetometer fusion.
- *
- * @group EKF2
- * @min 0.0
- * @max 1.0
- * @unit rad/s
- * @decimal 2
- */
-PARAM_DEFINE_FLOAT(EKF2_MAG_YAWLIM, 0.20f);
-
-/**
  * Gate size for barometric and GPS height fusion
  *
  * Sets the number of standard deviations used by the innovation consistency test.
