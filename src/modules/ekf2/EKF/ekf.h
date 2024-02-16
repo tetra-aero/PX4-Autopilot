@@ -499,6 +499,24 @@ public:
 		return is_healthy;
 	}
 
+	bool measurementUpdate(VectorState &K, VectorState &H, float R, float innovation)
+	{
+		clearInhibitedStateKalmanGains(K);
+
+		SquareMatrixState I;
+		I.setIdentity();
+		const SquareMatrixState A = I - matrix::Matrix<float, State::size, 1>(K) * H.transpose();
+		P = A * P * A.transpose() + matrix::Matrix<float, State::size, 1>(K) * R * K.transpose();
+
+		constrainStateVariances();
+		forceCovarianceSymmetry();
+
+		// apply the state corrections
+		fuse(K, innovation);
+
+		return true;
+	}
+
 	void resetGlobalPosToExternalObservation(double lat_deg, double lon_deg, float accuracy, uint64_t timestamp_observation);
 
 	void updateParameters();
