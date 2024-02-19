@@ -503,10 +503,11 @@ public:
 	{
 		clearInhibitedStateKalmanGains(K);
 
-		SquareMatrixState I;
-		I.setIdentity();
+		const auto I = matrix::eye<float, State::size>();
 		const SquareMatrixState A = I - matrix::Matrix<float, State::size, 1>(K) * H.transpose();
-		P = A * P * A.transpose() + matrix::Matrix<float, State::size, 1>(K) * R * K.transpose();
+		P = A * P;
+		P *= A.transpose();
+		P += matrix::Matrix<float, State::size, 1>(K) * R * K.transpose();
 
 		constrainStateVariances();
 		forceCovarianceSymmetry();
