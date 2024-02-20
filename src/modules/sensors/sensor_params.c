@@ -47,7 +47,7 @@
  * @value 0 Model with Pitot
  * @value 1 Model without Pitot (1.5 mm tubes)
  * @value 2 Tube Pressure Drop
- *
+ * @value 3 Venturi effect airspeed sensor
  * @group Sensors
  */
 PARAM_DEFINE_INT32(CAL_AIR_CMODEL, 0);
@@ -75,6 +75,40 @@ PARAM_DEFINE_FLOAT(CAL_AIR_TUBELEN, 0.2f);
  * @group Sensors
  */
 PARAM_DEFINE_FLOAT(CAL_AIR_TUBED_MM, 1.5f);
+
+/**
+ * Venturi tube sensor
+ *
+ * @min 0
+ * @max 10000
+ * @unit mm
+ *
+*/
+
+PARAM_DEFINE_FLOAT(CAL_AIR_ENT_CRS, 1600);
+
+/**
+ * Venturi tube sensor
+ *
+ * @min 0
+ * @max 10000
+ * @unit mm
+ *
+*/
+
+PARAM_DEFINE_FLOAT(CAL_AIR_SMP1_CRS, 600);
+
+
+/**
+ * Venturi tube sensor
+ *
+ * @min 0
+ * @max 10000
+ * @unit mm
+ *
+*/
+
+PARAM_DEFINE_FLOAT(CAL_AIR_SMP2_CRS, 400);
 
 /**
  * Differential pressure sensor offset
